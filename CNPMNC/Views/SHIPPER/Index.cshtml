@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CNPMNC.Models.SHIPPER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+}
+<style>
+    .MenuPage li {
+        display: inline;
+    }
+
+    .div {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 4px;
+        justify-content: space-evenly;
+        flex-flow: wrap;
+    }
+
+    .table {
+        margin: 0 0 40px 0;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        display: table;
+    }
+
+    td, th {
+        border: 1px solid #ffd800;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<h2>Danh Sách Shipper</h2>
+
+<p>
+    @Html.ActionLink("Thêm Shipper", "Create")
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Tên shipper</th>
+            <th class="text-center">SDT</th>
+            <th class="text-center">Địa chỉ</th>
+            <th class="text-center">CMND</th>
+            <th></th>
+        </tr>
+    </thead>
+    <div class="div-search" style="text-align:center ">
+        @using (Html.BeginForm("Index", "DONHANG", FormMethod.Get))
+        {
+
+            <b> Tìm kiếm:</b>
+            @Html.TextBox("search") <input type="submit" value="Search" />}
+    </div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.TenShipper)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.CMND)
+            </td>
+            <td>
+                <i class="fas fa-edit" style="font-size:18px">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.IDShipper })</i>
+                <i class="fas fa-trash-alt" style="font-size:18px">@Html.ActionLink("Xóa", "Delete", new { id = item.IDShipper })</i>
+            </td>
+        </tr>
+    }
+
+</table>

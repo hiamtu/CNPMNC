@@ -1,0 +1,83 @@
+﻿@model CNPMNC.Models.SHIPPER
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa Shipper</h2>
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+<style>
+    .cangiua {
+        margin: 0 auto;
+        background: #bbbbb5;
+        height: 482px;
+        width: 397px;
+        margin-top: 30px;
+        margin-right: 600px;
+        border-radius: 15px;
+    }
+
+    input.form-control {
+        width: 335px;
+        height: 41.6px;
+        margin: 0 auto;
+    }
+</style>
+<div class="cangiua">
+    <div style="width: 500px; height: 500px; padding: 30px 22px; color: black; background: #f4e2e2; border-radius: 15px;">
+        <div class="card-header" style="text-align: center;font-size:20px;">
+            <div>
+                <h4>SHIPPER</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.TenShipper)*@
+                        <label class="control-label col-md-2" for="TenShipper">Tênshipper</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenShipper)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.SDT)*@
+                        <label class="control-label col-md-2" for="SDT">SĐT</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SDT)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.DiaChi)*@
+                        <label class="control-label col-md-2" for="DiaChi">ĐịaChỉ</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.CMND)*@
+                        <label class="control-label col-md-2" for="CMND">CMND</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CMND)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Xóa" class="btn btn-default" /> 
+                        
+                    </div>
+                }
+            </div>

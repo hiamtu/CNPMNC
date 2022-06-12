@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuanLiGHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CTDONHANG">
+          <Key>
+            <PropertyRef Name="IDCTDONHANG" />
+          </Key>
+          <Property Name="IDDonHang" Type="varchar" MaxLength="50" />
+          <Property Name="IDShipper" Type="varchar" MaxLength="50" />
+          <Property Name="Mota" Type="varchar" MaxLength="50" />
+          <Property Name="IDCTDONHANG" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="PhiShip" Type="varchar" MaxLength="50" />
+          <Property Name="DONGIA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DONHANG">
+          <Key>
+            <PropertyRef Name="IDDonHang" />
+          </Key>
+          <Property Name="IDDonHang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NoiDi" Type="varchar" MaxLength="50" />
+          <Property Name="NoiDen" Type="varchar" MaxLength="50" />
+          <Property Name="CanNang" Type="int" />
+          <Property Name="HinhThucVanChuyen" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ngay" Type="date" />
+        </EntityType>
+        <EntityType Name="PHI">
+          <Key>
+            <PropertyRef Name="IDPhi" />
+          </Key>
+          <Property Name="IDPhi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDDonHang" Type="varchar" MaxLength="50" />
+          <Property Name="Gia" Type="varchar" MaxLength="50" />
+          <Property Name="QuangDuong" Type="int" />
+        </EntityType>
+        <EntityType Name="SHIPPER">
+          <Key>
+            <PropertyRef Name="IDShipper" />
+          </Key>
+          <Property Name="IDShipper" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenShipper" Type="varchar" MaxLength="50" />
+          <Property Name="SDT" Type="varchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="varchar" MaxLength="50" />
+          <Property Name="CMND" Type="int" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="IDTaiKhoan" />
+          </Key>
+          <Property Name="IDTaiKhoan" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="varchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="int" />
+          <Property Name="LoaiTaiKhoan" Type="int" />
+        </EntityType>
+        <Association Name="FK_CTDONHANG_DONHANG">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="0..1" />
+          <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="CTDONHANG">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTDONHANG_SHIPPER">
+          <End Role="SHIPPER" Type="Self.SHIPPER" Multiplicity="0..1" />
+          <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIPPER">
+              <PropertyRef Name="IDShipper" />
+            </Principal>
+            <Dependent Role="CTDONHANG">
+              <PropertyRef Name="IDShipper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONHANG_PHI">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="0..1" />
+          <End Role="PHI" Type="Self.PHI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="PHI">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_phi_ctdonhang">
+          <End Role="PHI" Type="Self.PHI" Multiplicity="0..1" />
+          <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHI">
+              <PropertyRef Name="IDPhi" />
+            </Principal>
+            <Dependent Role="CTDONHANG">
+              <PropertyRef Name="PhiShip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLiGHModelStoreContainer">
+          <EntitySet Name="CTDONHANG" EntityType="Self.CTDONHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHI" EntityType="Self.PHI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHIPPER" EntityType="Self.SHIPPER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CTDONHANG_DONHANG" Association="Self.FK_CTDONHANG_DONHANG">
+            <End Role="DONHANG" EntitySet="DONHANG" />
+            <End Role="CTDONHANG" EntitySet="CTDONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTDONHANG_SHIPPER" Association="Self.FK_CTDONHANG_SHIPPER">
+            <End Role="SHIPPER" EntitySet="SHIPPER" />
+            <End Role="CTDONHANG" EntitySet="CTDONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONHANG_PHI" Association="Self.FK_DONHANG_PHI">
+            <End Role="DONHANG" EntitySet="DONHANG" />
+            <End Role="PHI" EntitySet="PHI" />
+          </AssociationSet>
+          <AssociationSet Name="fk_phi_ctdonhang" Association="Self.fk_phi_ctdonhang">
+            <End Role="PHI" EntitySet="PHI" />
+            <End Role="CTDONHANG" EntitySet="CTDONHANG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLiGHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CTDONHANG">
+          <Key>
+            <PropertyRef Name="IDCTDONHANG" />
+          </Key>
+          <Property Name="IDDonHang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDShipper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mota" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDCTDONHANG" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhiShip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DONGIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONHANG" Relationship="Self.FK_CTDONHANG_DONHANG" FromRole="CTDONHANG" ToRole="DONHANG" />
+          <NavigationProperty Name="SHIPPER" Relationship="Self.FK_CTDONHANG_SHIPPER" FromRole="CTDONHANG" ToRole="SHIPPER" />
+          <NavigationProperty Name="PHI" Relationship="Self.fk_phi_ctdonhang" FromRole="CTDONHANG" ToRole="PHI" />
+        </EntityType>
+        <EntityType Name="DONHANG">
+          <Key>
+            <PropertyRef Name="IDDonHang" />
+          </Key>
+          <Property Name="IDDonHang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoiDi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NoiDen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CanNang" Type="Int32" />
+          <Property Name="HinhThucVanChuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ngay" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CTDONHANGs" Relationship="Self.FK_CTDONHANG_DONHANG" FromRole="DONHANG" ToRole="CTDONHANG" />
+          <NavigationProperty Name="PHIs" Relationship="Self.FK_DONHANG_PHI" FromRole="DONHANG" ToRole="PHI" />
+        </EntityType>
+        <EntityType Name="PHI">
+          <Key>
+            <PropertyRef Name="IDPhi" />
+          </Key>
+          <Property Name="IDPhi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDDonHang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QuangDuong" Type="Int32" />
+          <NavigationProperty Name="CTDONHANGs" Relationship="Self.fk_phi_ctdonhang" FromRole="PHI" ToRole="CTDONHANG" />
+          <NavigationProperty Name="DONHANG" Relationship="Self.FK_DONHANG_PHI" FromRole="PHI" ToRole="DONHANG" />
+        </EntityType>
+        <EntityType Name="SHIPPER">
+          <Key>
+            <PropertyRef Name="IDShipper" />
+          </Key>
+          <Property Name="IDShipper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenShipper" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CMND" Type="Int32" />
+          <NavigationProperty Name="CTDONHANGs" Relationship="Self.FK_CTDONHANG_SHIPPER" FromRole="SHIPPER" ToRole="CTDONHANG" />
+        </EntityType>
+        <EntityType Name="TAIKHOAN">
+          <Key>
+            <PropertyRef Name="IDTaiKhoan" />
+          </Key>
+          <Property Name="IDTaiKhoan" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenTaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhau" Type="Int32" />
+          <Property Name="LoaiTaiKhoan" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_CTDONHANG_DONHANG">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="0..1" />
+          <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="CTDONHANG">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTDONHANG_SHIPPER">
+          <End Role="SHIPPER" Type="Self.SHIPPER" Multiplicity="0..1" />
+          <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHIPPER">
+              <PropertyRef Name="IDShipper" />
+            </Principal>
+            <Dependent Role="CTDONHANG">
+              <PropertyRef Name="IDShipper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_phi_ctdonhang">
+          <End Role="PHI" Type="Self.PHI" Multiplicity="0..1" />
+          <End Role="CTDONHANG" Type="Self.CTDONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHI">
+              <PropertyRef Name="IDPhi" />
+            </Principal>
+            <Dependent Role="CTDONHANG">
+              <PropertyRef Name="PhiShip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONHANG_PHI">
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="0..1" />
+          <End Role="PHI" Type="Self.PHI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONHANG">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="PHI">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLiGHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CTDONHANGs" EntityType="Self.CTDONHANG" />
+          <EntitySet Name="DONHANGs" EntityType="Self.DONHANG" />
+          <EntitySet Name="PHIs" EntityType="Self.PHI" />
+          <EntitySet Name="SHIPPERs" EntityType="Self.SHIPPER" />
+          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+          <AssociationSet Name="FK_CTDONHANG_DONHANG" Association="Self.FK_CTDONHANG_DONHANG">
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+            <End Role="CTDONHANG" EntitySet="CTDONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTDONHANG_SHIPPER" Association="Self.FK_CTDONHANG_SHIPPER">
+            <End Role="SHIPPER" EntitySet="SHIPPERs" />
+            <End Role="CTDONHANG" EntitySet="CTDONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_phi_ctdonhang" Association="Self.fk_phi_ctdonhang">
+            <End Role="PHI" EntitySet="PHIs" />
+            <End Role="CTDONHANG" EntitySet="CTDONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONHANG_PHI" Association="Self.FK_DONHANG_PHI">
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+            <End Role="PHI" EntitySet="PHIs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLiGHModelStoreContainer" CdmEntityContainer="QuanLiGHEntities">
+          <EntitySetMapping Name="CTDONHANGs">
+            <EntityTypeMapping TypeName="QuanLiGHModel.CTDONHANG">
+              <MappingFragment StoreEntitySet="CTDONHANG">
+                <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+                <ScalarProperty Name="IDShipper" ColumnName="IDShipper" />
+                <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="IDCTDONHANG" ColumnName="IDCTDONHANG" />
+                <ScalarProperty Name="PhiShip" ColumnName="PhiShip" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONHANGs">
+            <EntityTypeMapping TypeName="QuanLiGHModel.DONHANG">
+              <MappingFragment StoreEntitySet="DONHANG">
+                <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+                <ScalarProperty Name="NoiDi" ColumnName="NoiDi" />
+                <ScalarProperty Name="NoiDen" ColumnName="NoiDen" />
+                <ScalarProperty Name="CanNang" ColumnName="CanNang" />
+                <ScalarProperty Name="HinhThucVanChuyen" ColumnName="HinhThucVanChuyen" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIs">
+            <EntityTypeMapping TypeName="QuanLiGHModel.PHI">
+              <MappingFragment StoreEntitySet="PHI">
+                <ScalarProperty Name="IDPhi" ColumnName="IDPhi" />
+                <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="QuangDuong" ColumnName="QuangDuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHIPPERs">
+            <EntityTypeMapping TypeName="QuanLiGHModel.SHIPPER">
+              <MappingFragment StoreEntitySet="SHIPPER">
+                <ScalarProperty Name="IDShipper" ColumnName="IDShipper" />
+                <ScalarProperty Name="TenShipper" ColumnName="TenShipper" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOANs">
+            <EntityTypeMapping TypeName="QuanLiGHModel.TAIKHOAN">
+              <MappingFragment StoreEntitySet="TAIKHOAN">
+                <ScalarProperty Name="IDTaiKhoan" ColumnName="IDTaiKhoan" />
+                <ScalarProperty Name="TenTaiKhoan" ColumnName="TenTaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="LoaiTaiKhoan" ColumnName="LoaiTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

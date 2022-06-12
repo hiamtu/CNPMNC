@@ -1,0 +1,103 @@
+﻿@model CNPMNC.Models.DONHANG
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa đơn hàng</h2>
+
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+<style>
+    .cangiua {
+        margin: 0 auto;
+        background: #bbbbb5;
+        height: 482px;
+        width: 397px;
+        margin-top: 30px;
+        margin-right: 600px;
+        border-radius: 15px;
+    }
+</style>
+<div class="cangiua">
+    <div style="width: 500px; height: 500px; padding: 50px 22px; color: black; background: #f4e2e2; border-radius: 15px;">
+        <div class="card-header" style="text-align: center;font-size:20px;">
+            <div>
+                <h4>Đơn Hàng</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.NoiDi)*@
+                        <label class="control-label col-md-2" for="NoiDi">Nơiđi</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NoiDi)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.NoiDen)*@
+                        <label class="control-label col-md-2" for="NoiDen">Nơiđến</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NoiDen)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.CanNang)*@
+                        <label class="control-label col-md-2" for="CanNang">Cânnặng</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CanNang)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.HinhThucVanChuyen)*@
+                        <label class="control-label col-md-2" for="HinhThucVanChuyen">HTVC</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.HinhThucVanChuyen)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.TrangThai)*@
+                        <label class="control-label col-md-2" for="TrangThai">Trạngthái</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TrangThai)
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Ngay)*@
+                        <label class="control-label col-md-2" for="Ngay">Ngày</label>
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Ngay)
+                    </dd>
+
+                    @*<dt>
+                        @Html.DisplayNameFor(model => model.DonGia)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DonGia)
+                    </dd>*@
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Xóa" class="btn btn-default" />
+                    </div>
+                }
+            </div>

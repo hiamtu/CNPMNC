@@ -1,0 +1,75 @@
+﻿@model CNPMNC.Models.DONHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DONHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CanNang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanNang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhThucVanChuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhThucVanChuyen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDDonHang }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

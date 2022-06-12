@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CNPMNC.Models.TAIKHOAN>
+<h2>Tài khoản</h2>
+<i class="fa-solid fa-calendar-pen"></i>
+<p>
+    @Html.ActionLink("Thêm tài khoản", "Create")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</p>
+<style>
+    .MenuPage li {
+        display: inline;
+    }
+
+    .div {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 4px;
+        justify-content: space-evenly;
+        flex-flow: wrap;
+    }
+
+    .table {
+        margin: 0 0 40px 0;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        display: table;
+    }
+
+    td, th {
+        border: 1px solid #ffd800;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Tên tài khoản</th>
+            <th class="text-center">Mật khẩu</th>
+            <th class="text-center">Loại tài khoản</th>
+            <th></th>
+        </tr>
+    </thead>
+    <div class="div-search" style="text-align:center ">
+        @using (Html.BeginForm("Index", "DONHANG", FormMethod.Get))
+        {
+
+            <b> Tìm kiếm:</b>
+            @Html.TextBox("search") <input type="submit" value="Search" />}
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.TenTaiKhoan)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.LoaiTaiKhoan)
+            </td>
+            <td>
+                <i class="fas fa-edit" style="font-size:18px">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.IDTaiKhoan })</i>
+                <i class="fas fa-trash-alt" style="font-size:18px">@Html.ActionLink("Xóa", "Delete", new { id = item.IDTaiKhoan })</i>
+            </td>
+        </tr>
+    }
+
+</table>

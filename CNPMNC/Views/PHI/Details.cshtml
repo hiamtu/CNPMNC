@@ -1,0 +1,43 @@
+﻿@model CNPMNC.Models.PHI
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PHI</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuangDuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuangDuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DONHANG.NoiDi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DONHANG.NoiDi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPhi }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c6030159e0e4699a7e68a3d5317cc97" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLiGHModel.CTDONHANG" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLiGHModel.DONHANG" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLiGHModel.PHI" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLiGHModel.SHIPPER" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLiGHModel.TAIKHOAN" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QuanLiGHModel.FK_CTDONHANG_DONHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLiGHModel.FK_CTDONHANG_SHIPPER" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLiGHModel.fk_phi_ctdonhang" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLiGHModel.FK_DONHANG_PHI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

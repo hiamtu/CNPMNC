@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CNPMNC.Models.PHI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+}
+
+<h2>Chi Phí</h2>
+<p>
+    @Html.ActionLink("Thêm Phí mới", "Create")
+</p>
+<style>
+    .MenuPage li {
+        display: inline;
+    }
+
+    .div {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 4px;
+        justify-content: space-evenly;
+        flex-flow: wrap;
+    }
+
+    .table {
+        margin: 0 0 40px 0;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        display: table;
+    }
+
+    td, th {
+        border: 1px solid #ffd800;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    .Chỉnh sửa {
+        background: #ffd800;
+        color: #ff0000
+    }
+</style>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Giá</th>
+            <th class="text-center">Quãng đường</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.QuangDuong)
+            </td>
+            <td>
+                <i class="fas fa-edit" style="font-size:18px">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.IDPhi })</i>
+            </td>
+        </tr>
+    }
+
+</table>

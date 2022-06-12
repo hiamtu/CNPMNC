@@ -1,0 +1,117 @@
+﻿@model CNPMNC.Models.DONHANG
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chỉnh sửa đơn hàng</h2>
+<div>
+    @Html.ActionLink("Quay lại", "Index")
+</div>
+<style>
+    .cangiua {
+        margin: 0 auto;
+        background: #bbbbb5;
+        height: 482px;
+        width: 397px;
+        margin-top: 30px;
+        margin-right: 600px;
+        border-radius: 15px;
+    }
+
+    input.form-control {
+        width: 335px;
+        height: 41.6px;
+        margin: 0 auto;
+    }
+</style>
+<div class="cangiua">
+    <div style="width: 500px; height: 500px; padding: 30px 22px; color: black; background: #f4e2e2; border-radius: 15px;">
+        <div class="card-header" style="text-align: center;font-size:20px;">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Đơn Hàng</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IDDonHang)
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.NoiDi, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2" for="NoiDi">Nơiđi</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NoiDi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoiDi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.NoiDen, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2" for="NoiDen">Nơiđến</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NoiDen, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoiDen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.CanNang, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2" for="CanNang">Cânnặng</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CanNang, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CanNang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.HinhThucVanChuyen, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2" for="HinhThucVanChuyen">HTVC</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.HinhThucVanChuyen, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HinhThucVanChuyen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.TrangThai, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2" for="TrangThai">Trạngthái</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.Ngay, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    <label class="control-label col-md-2" for="Ngay">Ngày</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ngay, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Ngay, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Lưu" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
